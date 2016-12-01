@@ -13,15 +13,21 @@ $(document).ready(function(){
     });
 
   var containerHTML = '<div id = "item">\
-                          <h4 id = "name">{{name}}</h4>\
-                          <h6 id = "containerID">{{containerID}}</h6>\
+                          <h4 id = "name">__name__</h4>\
+                          <h6 id = "containerID">__containerID__</h6>\
                       </div>'
 
-  $.getJSON( "192.168.2.16:3000/containers", function( data ) {
-    for (container in data){
+  console.log(containerHTML)
+
+  $.getJSON("http://localhost:3000/containers", function(data) {
+    var containers = data['containers']
+
+    for (var i = 0; i < containers.length; i++) {
+      var container = containers[i]
+
       var itemHTML = containerHTML
-      itemHTML.replace(/{{name}}/g, container["name"])
-      itemHTML.replace(/{{containerID}}/g, container["name"])
+      itemHTML = itemHTML.replace(/__name__/g, container["name"])
+      itemHTML = itemHTML.replace(/__containerID__/g, container["id"])
       $("#listContainer").append(itemHTML)
     }
   })
