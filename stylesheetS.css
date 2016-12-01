@@ -1,0 +1,9 @@
+#containerList {
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    color: #000000;
+    border-style: inset;
+    font-family: Verdana, Arial, Sans-Serif;
+
+}
