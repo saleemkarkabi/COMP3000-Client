@@ -8,8 +8,13 @@ $(document).ready(function(){
     });
 
     $( '#addcontainer' ).submit(function( event ) {
-      window.location.replace('index.html');
-      event.preventDefault();
+      var name = $('#nameField').val();
+      var imageName = $('#imageField').val();
+
+      $.post("http://localhost:3000/containers", {"name": name, "image": imageName}, function(data) {
+          window.location.replace('index.html');
+          event.preventDefault();
+        });
     });
 
   var containerHTML = '<div id = "item">\
@@ -31,5 +36,4 @@ $(document).ready(function(){
       $("#listContainer").append(itemHTML)
     }
   })
-
 });
